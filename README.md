@@ -2,4 +2,4 @@
 
 WIP
 
-![screenshot](screenshot.png)
+Preview: https://github.com/alnj/alpha.cafe/blob/main/screenshot.png
