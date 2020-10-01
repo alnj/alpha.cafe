@@ -1,0 +1,209 @@
+// Imports
+@use 'reset'; // undo browser defaults
+
+// content font
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+// nav font
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+// headings font
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+
+:root {
+	--header_height: 120px;
+	--main_bg: #FFF;
+	--main_font: 'Rubik', sans-serif;
+	--main_offset: -80px;
+	--main_title_color: #392713;
+	--main_title_font: 'Boogaloo', cursive;
+	--nav_bg: #DA9149;
+	--page_bg: #FAF9F3;
+	--site_width: 550px;
+	--title_shadow: #FFDF89;
+}
+
+*::selection {
+	color: unset;
+	background-color: var(--title_shadow);
+	text-shadow: inherit;
+}
+
+html {
+	background: var(--page_bg);
+	height: 100%;
+}
+
+body {
+	background: url(./img/header_bg.png) no-repeat center top;
+	height: 100%;
+	// create header area which is currently empty space
+	padding-top: var(--header_height);
+}
+
+// navlink header ribbon
+nav {
+	background-color: var(--nav_bg);
+	background-image: url(./img/nav_texture.png);
+	box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.75),
+	            0px -3px 5px -2px rgba(0,0,0,0.6);
+	display: flex;
+	justify-content: space-between;
+	left: var(--main_offset);
+	line-height: 30px;
+	margin: auto;
+	padding: 0 20px;
+	position: relative;
+	transform-style: preserve-3d;
+	width: calc(var(--site_width) + 30px);
+	z-index: 2;
+
+	a {
+		color: var(--main_bg);
+		font-family: 'Dosis', sans-serif;
+		text-decoration: none;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+	}
+
+	// ribbon tips
+	&::before, &::after {
+		content: url(./img/ribbon_left.png);
+		left: -30px;
+		position: absolute;
+		top: 15px;
+		-webkit-filter: drop-shadow(0px -1px 3px #222);
+		filter: drop-shadow(0px -1px 3px #222);
+		transform: translateZ(-1px);
+		z-index: -1;
+	}
+	&::after {
+		right: -30px;
+		transform: scaleX(-1) translateZ(-1px);
+	}
+}
+
+main {
+	background-color: var(--main_bg);
+	// side shadow outline
+	box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3),
+	           -3px 3px 5px 0px rgba(0,0,0,0.3);
+	font-family: var(--main_font);
+	left: var(--main_offset);
+	margin: auto;
+	min-height: calc(100% - 60px);
+	position: relative;
+	width: var(--site_width);
+}
+
+// page title
+h1 {
+	color: var(--main_title_color);
+	font-family: var(--main_title_font);
+	font-size: 26px;
+	margin-bottom: 40px;
+	position: relative;
+	top: 10px;
+	text-align: center;
+	// text tower effect
+	text-shadow:
+		1px 1px var(--title_shadow),
+		2px 2px var(--title_shadow),
+		3px 3px var(--title_shadow),
+		4px 4px var(--title_shadow);
+	z-index: 2;
+
+	// small al logo
+	&::before {
+		content: url(./img/h1_logo.png);
+		display: inline-block;
+		-webkit-filter: drop-shadow(3px 3px 0 px #222);
+		filter: drop-shadow(3px 3px 0px #222);
+		position: relative;
+		top: 6px;
+		margin-right: 16px;
+	}
+
+	// background under page title
+	&::after {
+		background: url(./img/h1_bg.png) center 0px no-repeat;
+		border-top: 1px dashed #C0A79D;
+		content: "";
+		display: block;
+		height: 44px;
+		left: 0px;
+		position: absolute;
+		top: -2px;
+		width: var(--site_width);
+		z-index: -1;
+	}
+}
+
+
+// headings
+h2 {
+	font-family: var(--main_title_font);
+	font-size: 20px;
+	height: 36px;
+	margin-left: 40px;
+	margin-top: 30px;
+	min-width: 70%;
+	padding: 0 30px;
+
+	// fancy bottom border
+	&::after {
+		background-color: #B3B3B3;
+		border-radius: 2px;
+		box-shadow: 0 -1px 0 #D8A370;
+		content: "";
+		height: 1px;
+		left: 0;
+		margin-top: 26px;
+		position: absolute;
+		width: 70%;
+	}
+
+	// every other heading is right aligned
+	&:nth-of-type(even) {
+		margin-left: unset;
+		margin-right: 40px;
+		text-align: right;
+
+		&::after {
+			left: unset;
+			right: 0;
+		}
+	}
+
+	// set different logo for each successive heading
+	@for $i from 1 through 3 {
+		&:nth-of-type(#{$i})::before {
+			content: url(./img/small_logo#{$i}.png);
+			position: absolute;
+			z-index: 2;
+
+			@if $i % 2 == 1  { // even-numbered heading logos
+				left: 20px;
+			} @else { // odd-numbered
+				right: 20px;
+			}
+		}
+	}
+}
+
+p {
+	font-size: 14px;
+	line-height: 1.5em;
+	margin-bottom: 16px;
+	margin-top: 8px;
+	padding: 0 10px;
+}
+
+footer.sitewide {
+	background-image: url(./img/footerb.png);
+	height: 130px;
+	left: calc(50% - 445px);
+	margin-top: -100px;
+	position: relative;
+	width: 700px;
+	// z-index: -1;
+}
+
+
