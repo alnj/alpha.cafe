@@ -243,17 +243,21 @@ h2 {
 	}
 }
 
-// set different logo for each successive heading
 a.heading {
+	// set different logo for each successive heading
 	@for $i from 1 through 3 { // TODO: create more than 3 logos
-		&.heading:nth-of-type(#{$i})::before {
+		&:nth-of-type(#{$i})::before {
 			content: url(./img/small_logo#{$i}.png);
-			left: 33px;
-			margin-top: -3px;
-			position: absolute;
-			z-index: 2;
 		}
 	}
+
+	&::before { // logo positioning
+		left: 33px;
+		margin-top: -3px;
+		position: absolute;
+		z-index: 2;
+	}
+
 }
 
 main p { // mostly alignment for notebook lines
@@ -294,8 +298,7 @@ footer.sitewide {
 	z-index: 4; // make sure the text is not covered by the landscape
 	            // potentially unneeded currently
 
-	p {
-		// different highlighter effect on the footer text
+	p { // different highlighter effect on the footer text
 		background:
 			linear-gradient(
 				104deg,
