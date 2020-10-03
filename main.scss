@@ -366,7 +366,8 @@ footer.sitewide { // TODO: make more reactive once content has been decided
 				rgba(255, 223, 137,0.3) 7.9%,
 				rgba(255, 223, 137,0) 15%
 			);
-		display: inline-block;
+		display: table;
+		margin: auto;
 		text-shadow:
 			-3px 4px 5px rgba(255, 223, 137, 0.7),
 			3px -4px 7.3px white,
