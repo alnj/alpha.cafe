@@ -1,6 +1,6 @@
 # alpha.cafe
 
-![Latest screenshot](https://github.com/alnj/alpha.cafe/blob/main/img/screenshot.png)
+![Latest screenshot.](./img/screenshot.png)
 
 Old school fansite for the manga **Yokohama Kaidashi Kikou**. Borrows elements from late-00s websites incl.:
 
