@@ -9,7 +9,6 @@
 // headings font
 @import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
 
-
 // Sass variables used where needed for use inside
 // media query declarations
 $main_offset: -80px;
@@ -29,6 +28,8 @@ $site_width: 550px;
 	--site_width: #{$site_width};
 	--title_shadow: #FFDF89;
 
+	// realign site to center when screen gets too small to show
+	// main + right graphics
 	@media (max-width: #{$site_width + 2 * math.abs($main_offset) + $ribbon_extra_width}) {
 		--main_offset: 0px;
 	}
@@ -45,10 +46,14 @@ body { // header image is set as body bg
 	font-family: var(--main_font);
 	height: auto;
 	min-height:100%;
-	overflow-x: hidden;
+	// TODO: remove this, move footer graphics to footer element
+	//       check if it works on mobile
+	// overflow-x: hidden;
 	// create header area which is currently empty space
 	padding-top: var(--header_height);
 
+	// on small screen, re-center header image
+	// to center Alpha.Cafe logo
 	@media (max-width: #{$site_width}) {
 		background-position: 70% top;
 	}
@@ -104,6 +109,7 @@ nav {
 		// this lets its shadow be under the nav
 		transform: translateZ(-1px); // needed over bare z-index here
 
+		// hide ribbon tips when viewport too small
 		@media (max-width: #{$site_width + $ribbon_extra_width + 12px}) {
 			display: none;
 		}
@@ -152,7 +158,7 @@ h1 {
 	font-family: var(--main_title_font);
 	font-size: 26px;
 	line-height: 26px;
-	margin-bottom: 40px; // alignment for notebook lines
+	margin-bottom: 42px; // alignment for notebook lines
 	padding: 6px 10px 0 10px;
 	position: relative;
 	text-align: center;
@@ -214,7 +220,7 @@ h2 {
 	display: block;
 	font-family: var(--main_title_font);
 	font-size: 21px; // notebook alignment
-	margin-bottom: 4px; // notebook alignment
+	margin-bottom: 4.5px; // notebook alignment
 	margin-left: 8px;
 	margin-right: 5px;
 	margin-top: -3px; // notebook alignment
@@ -275,6 +281,7 @@ h2 {
 		width: calc(100% - 15px);
 		z-index: -1; // ensure the pseudoelement doesn't hide text
 	}
+
 	a.heading:hover &::before {
 		opacity: 1; // when heading is hovered, new gradient fades in
 	}
@@ -359,7 +366,8 @@ footer.sitewide { // TODO: make more reactive once content has been decided
 				rgba(255, 223, 137,0.3) 7.9%,
 				rgba(255, 223, 137,0) 15%
 			);
-		display: inline-block;
+		display: table;
+		margin: auto;
 		text-shadow:
 			-3px 4px 5px rgba(255, 223, 137, 0.7),
 			3px -4px 7.3px white,
