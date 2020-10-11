@@ -13,7 +13,7 @@
 // media query declarations
 $main_offset: -80px;
 $ribbon_extra_width: 30px;
-$site_width: 550px;
+$site_width: 650px;
 
 :root {
 	--header_height: 120px;
@@ -37,20 +37,16 @@ $site_width: 550px;
 
 html {
 	background: var(--page_bg);
+	background-image: url(./img/page_texture.png);
 	height: auto;
 	min-height:100%;
 }
 
 body { // header image is set as body bg
-	background: url(./img/header_bg.png) no-repeat calc(50% + var(--main_offset)) top;
+	background: url(./img/header_bg.png) no-repeat calc(50% - 29px) top;
 	font-family: var(--main_font);
 	height: auto;
 	min-height:100%;
-	// TODO: remove this, move footer graphics to footer element
-	//       check if it works on mobile
-	// overflow-x: hidden;
-	// create header area which is currently empty space
-	padding-top: var(--header_height);
 
 	// on small screen, re-center header image
 	// to center Alpha.Cafe logo
@@ -68,6 +64,12 @@ body { // header image is set as body bg
 a { // reset link style
 	color: unset;
 	text-decoration: unset;
+}
+
+
+body > header {
+	// create header area which is currently empty space
+	padding-top: var(--header_height);
 }
 
 // navlink header ribbon
@@ -137,29 +139,18 @@ main {
 	min-height: calc(100vh - 184px);
 	padding-bottom: 85px; // ensure no text is over footer kokone
 	position: relative;
-	// I am hiding the notebook lines under the text
-	// using a strong white text-shadow.
-	// An alternative to this would be to wrap the text
-	// inside each <p> with an inline element (e.g. <span>)
-	// possessing background-color: white;.
-	text-shadow:
-		0px 2px 0 rgba(255, 255, 255, 1),
-		3px 2px 0 rgba(255, 255, 255, 1),
-		-3px 2px 0 rgba(255, 255, 255, 1),
-		2px 2px 0 rgba(255, 255, 255, 1),
-		-2px 2px 0 rgba(255, 255, 255, 1);
 	width: 100%;
-	z-index: 1; // needed for h2 hover effect
+	z-index: unset; // enforce for image no-js fullview darkening
 }
 
 // page title
 h1 {
 	color: var(--main_title_color);
 	font-family: var(--main_title_font);
-	font-size: 26px;
+	font-size: 30px;
 	line-height: 26px;
-	margin-bottom: 42px; // alignment for notebook lines
-	padding: 6px 10px 0 10px;
+	margin-bottom: 28px; // alignment for notebook lines
+	padding: 15px 10px 0 10px;
 	position: relative;
 	text-align: center;
 	text-shadow: // text tower shadow effect
@@ -192,43 +183,33 @@ h1 {
 		max-width: var(--site_width);
 		opacity: .7; // TODO: just change opacity on the image itself
 		position: absolute;
-		top: -2px; // TODO: just remove the 2 lines from the image
+		top: 0; // TODO: just remove the 2 lines from the image
 		width: 100%;
 		z-index: -1;
 	}
 }
 
 // headings
+main section {
+	background:
+		url(./img/notebook.png) 0 14px repeat;
+	margin-top: 0px; // alignment for notebook lines
+}
+
 h2 {
-	background: // pen highlighter effect, alongside text-shadow
-		linear-gradient(
-			104deg,
-			rgba(255, 223, 137,0) 0.9%,
-			rgba(255, 223, 137,1.25) 2.4%,
-			rgba(255, 223, 137,0.5) 5.8%,
-			rgba(255, 223, 137,0.4) 93%,
-			rgba(255, 223, 137,0.7) 96%,
-			rgba(255, 223, 137,0) 98%
-		),
-		linear-gradient(
-			183deg,
-			rgba(255, 223, 137,0) 0%,
-			rgba(255, 223, 137,0.3) 7.9%,
-			rgba(255, 223, 137,0) 15%
-		);
-	border-radius: 7.5px; // highlighter
 	display: block;
 	font-family: var(--main_title_font);
 	font-size: 21px; // notebook alignment
-	margin-bottom: 4.5px; // notebook alignment
-	margin-left: 8px;
-	margin-right: 5px;
-	margin-top: -3px; // notebook alignment
-	padding: 0 36px 0 80px; // leave space for heading logos
+	// margin-right: 5px;
+	line-height: 26px;
+	max-width: var(--site_width);
+	padding: 2px 36px 1px 80px; // leave space for heading logos
 	text-shadow: // highlighter
 		-12px 5px 6.8px rgba(255, 223, 137,0.7),
 		6px -4px 11px rgba(255, 255, 255,1),
 		-5px -2px 12px rgba(255, 255, 255,1);
+	width : calc(100% + 15px);
+	z-index: 3;
 
 	// anchor logo
 	a.heading &::after {
@@ -236,7 +217,7 @@ h2 {
 		content: "";
 		display: inline-block;
 		height:16px;
-		top: calc(50% - 11px);
+		top: calc(50% - 8px);
 		opacity: 0; // hidden unless heading is h overed
 		position: absolute;
 		right: 50px; // will slide further right on hover
@@ -246,7 +227,7 @@ h2 {
 
 	a.heading:hover &::after {
 		opacity: 1;
-		right: calc(4% + 8px);
+		right: calc(1% + 15px);
 		transition: 0.5s;
 	}
 
@@ -265,89 +246,292 @@ h2 {
 			),
 			linear-gradient(
 				183deg,
-				rgba(245, 181, 117,0) 0%,
+				rgba(245, 181, 117,0) 15%,
 				rgba(245, 181, 117,0.3) 7.9%,
 				rgba(245, 181, 117,0) 15%
 			);
 		border-radius: 7.5px; // highlighter
 		content: "";
 		display: block;
-		height: 100% ;
+		height: calc(100% - 0px);
 		left: 0;
-		margin-left: 8px;
+		margin-left: -7px;
+		margin-top: -1px;
 		opacity: 0;
 		position: absolute;
 		transition: 0.3s;
-		width: calc(100% - 15px);
-		z-index: -1; // ensure the pseudoelement doesn't hide text
+		width: calc(100% + 15px);
+		z-index: -1;
 	}
 
-	a.heading:hover &::before {
+	a.heading:hover &::before, &:target::before {
 		opacity: 1; // when heading is hovered, new gradient fades in
 	}
 }
 
 a.heading {
+	background: // pen highlighter effect, alongside text-shadow
+		linear-gradient(
+			104deg,
+			rgba(255, 223, 137,0) 0.9%,
+			rgba(255, 223, 137,1.25) 2.4%,
+			rgba(255, 223, 137,0.5) 5.8%,
+			rgba(255, 223, 137,0.4) 93%,
+			rgba(255, 223, 137,0.7) 96%,
+			rgba(255, 223, 137,0) 98%
+		),
+		linear-gradient(
+			183deg,
+			rgba(255, 223, 137,0) 15%,
+			rgba(255, 223, 137,0.3) 7.9%,
+			rgba(255, 223, 137,0) 15%
+		);
+	border-radius: 7.5px; // highlighter
+
+	margin-bottom: 10px; // notebook alignment
+	margin-left: -7px;
+	margin-top: 10px; // notebook alignment
+
+
 	display: inline-block;
 	position: relative;
 	width: 100%;
+	z-index: 1;
 
 	// set different logo for each successive heading
-	@for $i from 1 through 3 { // TODO: create more than 3 logos
-		&:nth-of-type(#{$i})::before {
+	@for $i from 1 through 4 { // TODO: create more than 3 logos
+		section:nth-of-type(#{$i}) &::before {
 			content: url(./img/small_logo#{$i}.png);
 		}
 	}
 
 	&::before { // logo positioning
-		left: 33px;
+		left: 18px;
 		position: absolute;
-		top: calc(50% - 16px);
-		z-index: 2;
+		top: calc(50% - 12px);
+		z-index: 3; // ensure logo is over <p> bg
 	}
 
 }
 
+main > section {
+	overflow: visible;
+	// TODO: hacky. find another compromise.
+	padding: 0 25px;
+	// max-width: 520px;
+	// width: calc(100% - 30px)
+	figure {
+		background-color: #FFF1CD;
+		border-radius: 5px;
+		float: left;
+		height: 118px;
+		margin: 5px 20px 5px 0;
+		padding: 5px;
+		width: 150px;
+
+		img {
+			border-radius: 5px;
+			cursor: pointer;
+			height: 108px;
+			object-fit: cover;
+			width: 140px;
+
+			transition: 0;
+		}
+
+		&:nth-of-type(even) {
+			float: right;
+			margin: 5px 0 5px 15px;
+		}
+	}
+
+	// hacky manual adjustment
+	&:nth-of-type(2) > figure:last-of-type,
+	&:nth-of-type(3) > figure:last-of-type {
+		margin-top: -15px;
+	}
+}
+
+// image fullsize viewer
+.click_for_fullsize {
+	display: none; // hide normal checkbox
+
+	// dark overlay
+	& + label::before {
+		background-color: rgba(0,0,0,0.6);
+		content: "";
+		height: 100%;
+		left:0;
+		opacity: 0;
+		position: fixed;
+		top:0;
+		visibility: hidden;
+		width: 100%;
+		z-index: 99;
+	}
+	&:checked + label::before { // show overlay when image clicked
+		// by setting transition inside the :checked pseudo-element,
+		// there will be no transition when closing the image
+		transition: opacity .3s;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	// "X" logo
+	&:checked + label div.fullsize::before {
+		background-color: rgba(0,0,0,0.6);
+		border-radius: 0 0 0 4px;
+		color: #fff ;
+		content: "x";
+		font-family: var(--main_font);
+		font-size: 20px;
+		padding: 4px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 99;
+	}
+
+	// fullsize image
+	& + label div.fullsize {
+		height: auto;
+		// move image out of viewport
+		// instead of display:none
+		// to work with loading="lazy"
+		left: -9999px;
+		max-height: 100vh;
+		max-width: 100vh;
+		object-fit: contain;
+		opacity: 0;
+		position: fixed;
+		top: 50%;
+		// below line lets us center image of unknown dimensions
+		transform: translateY(-50%) translateX(-50%);
+		transition: 0;
+		visibility: hidden;
+		width: auto;
+		z-index: 99;
+		& img {
+			width: unset;
+			height: unset;
+			box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
+		}
+	}
+	&:checked + label div.fullsize { // show fullsize image when clicked
+		left: 50%;
+		opacity: 1;
+		transition: opacity .3s;
+		visibility: visible;
+	}
+}
+
+main > section:first-of-type > figure:first-of-type::before {
+	content: url(./img/arrow.png);
+	position: absolute;
+	margin-top: 35px;
+	left: -83px;
+}
+
 main p { // mostly alignment for notebook lines
+	background-color: #fff; // hide notebook lines
+	display: inline; // don't hide past text
 	font-size: 14px;
 	line-height: 26px;
-	margin-bottom: 25.5px;
-	padding: 0 16px;
+	// with top/bot padding, even if alignment goes haywire all notebook
+	// lines will be properly aligned. e.g. mobile firefox ATM
+	padding: 6px 0;
+	position: relative;
 	// I believe this is for the case I change text to be able to go
 	// over the footer image.
 	z-index: 2;
+
+	&::after {
+		content: "\A\A"; // two newlines despite inline element
+		white-space: pre;
+
+	}
+
+	strong {
+       /*          --strong_background: #E9C6C4; */
+		// background:
+			// linear-gradient(
+				// 104deg,
+				// var(--strong_background) 0.9%,
+				// var(--strong_background) 2.4%,
+				// var(--strong_background) 5.8%,
+				// var(--strong_background) 93%,
+				// var(--strong_background) 96%,
+				// var(--strong_background) 98%
+			// ),
+			// linear-gradient(
+				// 183deg,
+				// var(--strong_background) 0%,
+				// var(--strong_background) 7.9%,
+				// var(--strong_background) 15%
+			// );
+		// font-weight: normal;
+		// text-shadow:
+			// -3px 4px 5px rgba(232, 197, 197, 0.7),
+			// 3px -4px 7.3px white,
+			/* -3px -4px 6px white; */
+	}
 }
+
+blockquote {
+	background: #f9f9f9;
+	border-left: 5px solid #ccc;
+	margin: 0px 10px 25px 10px;
+	padding: 13px 20px 13px 0px;
+	quotes: "\201C""\201D""\2018""\2019";
+
+	&::before {
+		color: #ccc;
+		content: open-quote;
+		font-size: 4em;
+		left: 10px;
+		line-height: 0.1em;
+		margin-left: 8px;
+		margin-right: 0.1em;
+		vertical-align: -0.4em;
+	}
+
+	p {
+		background-color: unset;
+		display: inline;
+		
+		&::after {
+			content: unset;
+		}
+	}
+}
+
 
 
 // bottom of page background / kokone
-main::after {
+body > footer {
 	background: url(./img/footer_bg.png) no-repeat bottom; // landscape
-	content: url(./img/footer_logo.png); // kokone / character
-	display: block;
 	height: 154px;
-	left: -60px;
 	margin: auto;
-	margin-top: -120px;
-	padding-left: 0px;
-	padding-top: 0px;
-	position: absolute;
-	top: 100%;
-	width: 669px;
-}
-
-// footer TEXT only
-footer.sitewide { // TODO: make more reactive once content has been decided
-	font-size: 13px;
+	margin-top: -154px;
+	max-width: 669px;
 	left: var(--main_offset);
-	margin: auto;
-	margin-top: -100px;
-	max-width: var(--site_width);
-	padding-left: 100px;
+	overflow: hidden;
+	padding-top: 40px; // padding for the text
 	position: relative;
 	text-align: center;
 	width: 100%;
-	z-index: 4; // make sure the text is not covered by the landscape
-	            // potentially unneeded currently
+	z-index: 2;
+
+	// TODO: make image go under text when small screen
+	&::before { // kokone character image
+		bottom: 30px;
+		content: url(./img/footer_logo.png); // kokone / character
+		height: 154px;
+		left: -35%;
+		padding-top: 10px;
+		position: relative;
+		z-index: 3;
+	}
 
 	p { // different highlighter effect on the footer text
 		background:
@@ -366,13 +550,26 @@ footer.sitewide { // TODO: make more reactive once content has been decided
 				rgba(255, 223, 137,0.3) 7.9%,
 				rgba(255, 223, 137,0) 15%
 			);
-		display: table;
+		// make <p>s inline so that highlighter effect
+		// highlights text and not block
+		display: inline;
+		font-size: 13px;
+		left: 10%;
 		margin: auto;
+		position: relative;
+		top: -160px;
 		text-shadow:
 			-3px 4px 5px rgba(255, 223, 137, 0.7),
 			3px -4px 7.3px white,
 			-3px -4px 6px white;
+		z-index: 4;
+
+		&::before {
+			// force newline between <p>s despite
+			// them being inline
+			content: "";
+			display: block;
+		}
 	}
 }
-
 
