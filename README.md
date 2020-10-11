@@ -24,13 +24,13 @@ This is both purposeful nostalgia and genuine personal preference. Modern webdes
 
 A few additional principles I applied:
 
-### Coding-wise
+### Clean code
 Simple HTML with emphasis on separation of concerns. Meaningless non-semantic markup (e.g. "wrapper" elements) must be employed as a last resort. HTML must, ideally, be fully understandable without comments.
 
 Amply commented SCSS with the aim to be understood by third parties. Elements higher on the page are located higher in the code and properties are sorted alphabetically. Repetition must be minimized. Themability must be maximized.
 
-### Writing-wise
-Simple vocabulary and concise phrasing. Cutting out information is acceptable if the resulting prose has a higher "interesting information÷text length" ratio. Thematic sections must follow crisp headings so users can easily find information relevant to them.
+### Appealing copy
+Simple vocabulary and concise phrasing. Cutting out information is acceptable if the resulting prose has a higher "interesting information÷text length" ratio. Thematic sections must follow crisp headings so users can easily find information relevant to them. Emphasize key words and phrases(?)
 
 ### Loading times
 Optimizing loading times is crucial for user experience (and bounce rate).
