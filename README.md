@@ -49,5 +49,6 @@ instead of using `display` or `visibility`. This prevents loading the gifs from 
 ### CSS full-size image viewer
 - Figure thumbnails can be enlarged with a click. The full version will appear in the center of the screen above a black overlay. This can be closed by clicking anywhere.
   - This is achieved without JS by wrapping the image in a checkbox label. While initial testing showed no glaring accessibility issue, further tests are desirable.
+- Before thumbnails are loaded, a nice CSS-only loading animation shows in their stead.
 
 TBC
