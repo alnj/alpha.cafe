@@ -7,6 +7,9 @@
 
 		<title>Alpha Café, everything about YKK!</title>
 
+		<meta name="description"
+		content="Alpha Café, the Yokohama Kaidashi Kikou fanpage with everything you need to know about the franchise!">
+
 	</head>
 	<body>
 		<header>
@@ -28,7 +31,7 @@
 					<h2 id="what_is_this_site">What's this site?</h2>
 				</a>
 
-				<!-- Image figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -->
 				<figure>
 					<!-- This initial checkbox is hidden in CSS. -->
 					<input type="checkbox" id="illus1" class="click_for_fullsize">
@@ -37,11 +40,20 @@
 					<label for="illus1">
 						<!-- Importance and loading attributes help the thumbnail loading
 						 not hang the loading of the rest of the page on most computers -->
-						<img src="./for_copy/illus1_thumb.gif" importance="low" loading="lazy" alt="Thumbnail: Alpha Hatsuseno drinking">
+						<!--
+							Leaving <img> example here but on this page we use <video>
+							<img src="" importance="low" loading="lazy" alt="">
+						-->
+						<video loop playsinline autoplay muted>
+							<source src="./for_copy/illus1_thumb.webm" type="video/webm">
+							Your browser does not support the video tag.
+						</video>
 
 						<!-- This is the loading animation that appears before thumbnails
 						     have loaded -->
-						<div class="loading_ring"><div></div><div></div><div></div><div></div></div>
+						<div class="loading_ring">
+							<div></div><div></div><div></div><div></div>
+						</div>
 
 						<!-- This is the fullsize image, which appears on a fullview
 						     overlay when the thumbnail is clicked/checked.
@@ -51,7 +63,15 @@
 							     the viewport in CSS makes it so a fullsize is
 							     only loaded when called by the user.
 							     As this requires JS, importance is used as a fallback -->
-							<img src="./for_copy/illus1.gif" alt="Alpha Hatsuseno drinking" importance="low" loading="lazy">
+							<!--
+								Leaving <img> example here but on this page we use <video>
+								<img src="" importance="low" loading="lazy" alt="">
+							-->
+							<!-- For videos we simply use preload="none" with a poster and controls -->
+							<video loop controls preload="none" poster="./for_copy/illus1.jpg">
+								<source src="./for_copy/illus1.webm" type="video/webm">
+								Your browser does not support the video tag.
+							</video>
 						</div>
 					</label>
 				</figure>
@@ -65,32 +85,48 @@
 					<h2 id="what_is_ykk">What's Yokohama Kaidashi Kikou?</h2>
 				</a>
 
-				<!-- Image figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -->
 				<figure>
 					<input type="checkbox" id="illus2" class="click_for_fullsize">
 					<label for="illus2">
-						<img src="./for_copy/illus2_thumb.gif" alt="Thumbnail: Handgun and coffee" importance="low" loading="lazy">
-						<div class="loading_ring"><div></div><div></div><div></div><div></div></div>
-
+						<video loop playsinline autoplay muted>
+							<source src="./for_copy/illus2_thumb.webm" type="video/webm">
+							Your browser does not support the video tag.
+						</video>
+						<div class="loading_ring">
+							<div></div><div></div><div></div><div></div>
+						</div>
 						<div class="fullsize">
-							<img src="./for_copy/illus2.gif" alt="Handgun and coffee" importance="low" loading="lazy">
+							<video loop controls preload="none" poster="./for_copy/illus2.jpg">
+								<source src="./for_copy/illus2.webm" type="video/webm">
+								Your browser does not support the video tag.
+							</video>
 						</div>
 					</label>
 				</figure>
 				<!-- /// -->
 
+
 				<p><strong>Yokohama Kaidashi Kikou</strong>, or YKK for short, is <a href="">Hitoshi Ashinano</a>'s best-known <strong>manga series</strong>! It ran from <strong>1994 to 2006</strong> in <strong>seinen magazine Afternoon</strong>, alongside series like Mushishi, BLAME!, and Vinland Saga. YKK's fanbase has had an association and strong overlap with <strong>Aria</strong>'s, although the latter is more famous!</p>
 
 				<p>One translation for the title would be <strong>"Yokohama Shopping Log."</strong></p>
 
-				<!-- Image figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -->
 				<figure>
 					<input type="checkbox" id="illus3" class="click_for_fullsize">
 					<label for="illus3">
-						<img src="./for_copy/illus3_thumb.gif" alt="Thumbnail: Field over seaside" importance="low" loading="lazy">
-						<div class="loading_ring"><div></div><div></div><div></div><div></div></div>
+						<video loop playsinline autoplay muted>
+							<source src="./for_copy/illus3_thumb.webm" type="video/webm">
+							Your browser does not support the video tag.
+						</video>
+						<div class="loading_ring">
+							<div></div><div></div><div></div><div></div>
+						</div>
 						<div class="fullsize">
-							<img src="./for_copy/illus3.gif" alt="Field over seaside" importance="low" loading="lazy">
+							<video loop controls preload="none" poster="./for_copy/illus3.jpg">
+								<source src="./for_copy/illus3.webm" type="video/webm">
+								Your browser does not support the video tag.
+							</video>
 						</div>
 					</label>
 				</figure>
@@ -104,31 +140,49 @@
 					<h2 id="what_is_ykk_about">What's  YKK about?</h2>
 				</a>
 
-				<!-- Image figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -->
 				<figure>
 					<input type="checkbox" id="illus4" class="click_for_fullsize">
 					<label for="illus4">
-						<img src="./for_copy/illus4_thumb.gif" alt="Thumbnail: Submerged city" importance="low" loading="lazy">
-						<div class="loading_ring"><div></div><div></div><div></div><div></div></div>
+						<video loop playsinline autoplay muted>
+							<!-- for this one, the thumbnail was the same filesize so there is none -->
+							<source src="./for_copy/illus4.webm" type="video/webm">
+							Your browser does not support the video tag.
+						</video>
+						<div class="loading_ring">
+							<div></div><div></div><div></div><div></div>
+						</div>
 						<div class="fullsize">
-							<img src="./for_copy/illus4.gif" alt="Submerged city" importance="low" loading="lazy">
+							<video loop controls>
+								<source src="./for_copy/illus4.webm" type="video/webm">
+								Your browser does not support the video tag.
+							</video>
 						</div>
 					</label>
 				</figure>
 				<!-- /// -->
 
+
 				<p>YKK is a post-apocalyptic slice of life following the daily life and travels of android Alpha Hatsuseno. Humanity is in gradual decline, and sea levels have risen submerging much of Japan as we know it.</p>
 
 				<p>In this Japan that has already accepted the twilight of humanity, Alpha lives her life peacefully, watching the passing of time in the last age of mankind.</p>
 
-				<!-- Image figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -->
 				<figure>
 					<input type="checkbox" id="illus5" class="click_for_fullsize">
 					<label for="illus5">
-						<img src="./for_copy/illus5_thumb.gif" alt="Thumbnail: Plants around electric pole" importance="low" loading="lazy">
-						<div class="loading_ring"><div></div><div></div><div></div><div></div></div>
+						<video loop playsinline autoplay muted>
+							<source src="./for_copy/illus5_thumb.webm" type="video/webm">
+							Your browser does not support the video tag.
+						</video>
+						<div class="loading_ring">
+							<div></div><div></div><div></div><div></div>
+						</div>
 						<div class="fullsize">
-							<img src="./for_copy/illus5.gif" alt="Plants around electric pole" importance="low" loading="lazy">
+							<video loop controls preload="none" poster="./for_copy/illus5.jpg">
+								<source src="./for_copy/illus5.webm" type="video/webm">
+								Your browser does not support the video tag.
+							</video>
 						</div>
 					</label>
 				</figure>

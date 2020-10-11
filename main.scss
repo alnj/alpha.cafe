@@ -154,6 +154,7 @@ h1 {
 	color: var(--main_title_color);
 	font-family: var(--main_title_font);
 	font-size: 30px;
+	height: 52px; // reduce layout jumping
 	line-height: 26px;
 	margin-bottom: 28px; // alignment for notebook lines
 	padding: 15px 10px 0 10px;
@@ -203,6 +204,19 @@ main section { // re-use the notebook lines to add empty space between sections
 	padding: 0 25px;
 }
 
+// arrow with "click for full size" graphic over the first figure!
+main > section:first-of-type > figure:first-of-type::before {
+	content: url(./img/arrow.png);
+	position: absolute;
+	margin-top: 35px;
+	left: -83px;
+	z-index: 5;
+
+	@media (max-width: 800px) {
+		display: none;
+	}
+}
+
 // section headings
 a.heading { // links that wrap h2s
 	background: // pen highlighter effect, alongside text-shadow
@@ -243,78 +257,76 @@ a.heading { // links that wrap h2s
 			}
 		}
 	}
+}
+h2 {
+	display: block;
+	font-family: var(--main_title_font);
+	font-size: 21px; // notebook alignment
+	line-height: 26px;
+	max-width: var(--site_width);
+	padding: 2px 36px 1px 80px; // leave space for heading logos
+	text-shadow: // highlighter
+		-12px 5px 6.8px rgba(255, 223, 137,0.7),
+		6px -4px 11px rgba(255, 255, 255,1),
+		-5px -2px 12px rgba(255, 255, 255,1);
+	width : calc(100% + 15px);
+	z-index: 3;
 
-	// the h2 tags themselves
-	h2 {
+	// anchor logo
+	&::after {
+		background: url(./img/anchor.svg);
+		content: "";
+		display: inline-block;
+		height:16px;
+		opacity: 0; // hidden unless heading is h overed
+		position: absolute;
+		right: 50px; // will slide further right on hover
+		top: calc(50% - 8px);
+		transition: 0s;
+		width: 16px;
+	}
+	a.heading:hover &::after {
+		opacity: 1;
+		right: calc(1% + 15px);
+		transition: 0.5s;
+	}
+
+	// heading changes background on hover
+	// need pseudoelement w/ opacity transition for gradient transition
+	&::before {
+		background:
+			linear-gradient(
+				104deg,
+				rgba(245, 181, 117,0) 0.9%,
+				rgba(245, 181, 117,1.25) 2.4%,
+				rgba(245, 181, 117,0.5) 5.8%,
+				rgba(245, 181, 117,0.4) 93%,
+				rgba(245, 181, 117,0.7) 96%,
+				rgba(245, 181, 117,0) 98%
+			),
+			linear-gradient(
+				183deg,
+				rgba(245, 181, 117,0) 15%,
+				rgba(245, 181, 117,0.3) 7.9%,
+				rgba(245, 181, 117,0) 15%
+			);
+		border-radius: 7.5px; // highlighter
+		content: "";
 		display: block;
-		font-family: var(--main_title_font);
-		font-size: 21px; // notebook alignment
-		line-height: 26px;
-		max-width: var(--site_width);
-		padding: 2px 36px 1px 80px; // leave space for heading logos
-		text-shadow: // highlighter
-			-12px 5px 6.8px rgba(255, 223, 137,0.7),
-			6px -4px 11px rgba(255, 255, 255,1),
-			-5px -2px 12px rgba(255, 255, 255,1);
-		width : calc(100% + 15px);
-		z-index: 3;
+		height: calc(100% - 0px);
+		left: 0;
+		margin-left: -7px;
+		margin-top: -1px;
+		opacity: 0;
+		position: absolute;
+		transition: 0.3s;
+		width: calc(100% + 15px);
+		z-index: -1;
+	}
 
-		// anchor logo
-		&::after {
-			background: url(./img/anchor.svg);
-			content: "";
-			display: inline-block;
-			height:16px;
-			opacity: 0; // hidden unless heading is h overed
-			position: absolute;
-			right: 50px; // will slide further right on hover
-			top: calc(50% - 8px);
-			transition: 0s;
-			width: 16px;
-		}
-		a.heading:hover &::after {
-			opacity: 1;
-			right: calc(1% + 15px);
-			transition: 0.5s;
-		}
-
-		// heading changes background on hover
-		// need pseudoelement w/ opacity transition for gradient transition
-		&::before {
-			background:
-				linear-gradient(
-					104deg,
-					rgba(245, 181, 117,0) 0.9%,
-					rgba(245, 181, 117,1.25) 2.4%,
-					rgba(245, 181, 117,0.5) 5.8%,
-					rgba(245, 181, 117,0.4) 93%,
-					rgba(245, 181, 117,0.7) 96%,
-					rgba(245, 181, 117,0) 98%
-				),
-				linear-gradient(
-					183deg,
-					rgba(245, 181, 117,0) 15%,
-					rgba(245, 181, 117,0.3) 7.9%,
-					rgba(245, 181, 117,0) 15%
-				);
-			border-radius: 7.5px; // highlighter
-			content: "";
-			display: block;
-			height: calc(100% - 0px);
-			left: 0;
-			margin-left: -7px;
-			margin-top: -1px;
-			opacity: 0;
-			position: absolute;
-			transition: 0.3s;
-			width: calc(100% + 15px);
-			z-index: -1;
-		}
-
-		a.heading:hover &::before,
-		&:target::before { // also occurs when anchor is in the url bar
-			opacity: 1; // when heading is hovered, new gradient fades in
-		}
+	a.heading:hover &::before,
+	&:target::before { // also occurs when anchor is in the url bar
+		opacity: 1; // when heading is hovered, new gradient fades in
 	}
 }
 
@@ -330,7 +342,8 @@ figure { // basic layout
 	overflow: hidden;
 
 	// thumbnail basic layout
-	label > img {
+	label > img,
+	label > video {
 		border-radius: 5px;
 		color: #555; // for alt text
 		cursor: pointer;
@@ -465,19 +478,6 @@ figure { // basic layout
 		opacity: 1;
 		transition: opacity .3s;
 		visibility: visible;
-	}
-}
-
-// arrow with "click for full size" graphic over the first figure!
-main > section:first-of-type > figure:first-of-type::before {
-	content: url(./img/arrow.png);
-	position: absolute;
-	margin-top: 35px;
-	left: -83px;
-	z-index: 5;
-
-	@media (max-width: 800px) {
-		display: none;
 	}
 }
 
