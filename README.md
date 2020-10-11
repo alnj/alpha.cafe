@@ -41,10 +41,7 @@ A few additional principles I applied:
 ### Loading times
 - Optimizing loading times is crucial for user experience (and bounce rate).
 - Global image assets are compressed and take no more than 500KB.
-- Full version of gifs are loaded on-demand using the `loading="lazy"` attribute, and hiding them by moving them out of the viewport (`left: -9999px`)
-instead of using `display` or `visibility`. This prevents loading the gifs from delaying the loading of the rest of the page, and saves bandwidth.
-  - While this doesn't use JS, for anti-tracking reasons this only works with JS enabled. As fallback, the experimental `importance="low"` attribute is used, hinting the browser to load those images last.
-- gif thumbnails are compressed to a 1.1MB total, and are also set to `importance="low"` and `loading="lazy"` to load the site layout and content as early as possible.
+- Gifs have been transcoded to webm. Animated thumbnails total no larger than 175KB. Fullsize animations loaded on demand total 360KB. 
 
 ### CSS full-size image viewer
 - Figure thumbnails can be enlarged with a click. The full version will appear in the center of the screen above a black overlay. This can be closed by clicking anywhere.
