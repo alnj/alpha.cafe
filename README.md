@@ -15,7 +15,8 @@ This is both purposeful nostalgia and genuine personal preference.
 ### Modern webdesign is still used, e.g.:
 
 - CSS3 properties such as box-shadow, border-radius, transition, and even flexbox.
-- CSS functions (var(), calc(), rgba(), linear-gradient()...).
+- CSS functions (var(), calc(), rgba(), linear-gradient()...)
+- Fonts.
 - Full responsiveness using media queries.
 - SCSS.
 - HTML5 with semantic elements.
