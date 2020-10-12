@@ -36,43 +36,25 @@
 					<h2 id="what_is_this_site">What's this site?</h2>
 				</a>
 
-				<!-- Image/Video figure with thumbnail -->
+				<!-- Image/Video figure with thumbnail -- With explanation -->
+				<!-- The input itself is hidden in CSS.
+				Both the thumbnail and fullsize are wrapped in a label and, therefore,
+				toggle the checkbox state on click.
+				If using <img>, importance="low" and loading="lazy" are recommended for
+				performance reasons (especially on the fullsize).
+				For video fullsize we use preload="none" -->
 				<figure>
-					<!-- This initial checkbox is hidden in CSS. -->
 					<input type="checkbox" id="illus1" class="click_for_fullsize">
-					<!-- The images are wrapped inside the checkbox label,
-					     such that they toggle the checkbox by being clicked. -->
 					<label for="illus1">
-						<!-- Importance and loading attributes help the thumbnail loading
-						 not hang the loading of the rest of the page on most computers -->
-						<!--
-							Leaving <img> example here but on this page we use <video>
-							<img src="" importance="low" loading="lazy" alt="">
-						-->
+						<!-- thumbnail -->
 						<video loop playsinline autoplay muted>
 							<source src="./for_copy/illus1_thumb.webm" type="video/webm">
 							Your browser does not support the video tag.
 						</video>
-
-						<!-- This is the loading animation that appears before thumbnails
-						     have loaded -->
-						<div class="loading_ring">
-							<div></div><div></div><div></div><div></div>
-						</div>
-
-						<!-- This is the fullsize image, which appears on a fullview
-						     overlay when the thumbnail is clicked/checked.
-						     Clicking anywhere on the screen hides this again. -->
+						<!-- thumbnail loading animation -->
+						<div class="loading_ring"> <div></div><div></div><div></div><div></div> </div>
+						<!-- fullsize -->
 						<div class="fullsize">
-							<!-- Lazy loading combined with moving fullsize out of
-							     the viewport in CSS makes it so a fullsize is
-							     only loaded when called by the user.
-							     As this requires JS, importance is used as a fallback -->
-							<!--
-								Leaving <img> example here but on this page we use <video>
-								<img src="" importance="low" loading="lazy" alt="">
-							-->
-							<!-- For videos we simply use preload="none" with a poster and controls -->
 							<video loop controls preload="none" poster="./for_copy/illus1.jpg">
 								<source src="./for_copy/illus1.webm" type="video/webm">
 								Your browser does not support the video tag.
@@ -98,9 +80,7 @@
 							<source src="./for_copy/illus2_thumb.webm" type="video/webm">
 							Your browser does not support the video tag.
 						</video>
-						<div class="loading_ring">
-							<div></div><div></div><div></div><div></div>
-						</div>
+						<div class="loading_ring"> <div></div><div></div><div></div><div></div> </div>
 						<div class="fullsize">
 							<video loop controls preload="none" poster="./for_copy/illus2.jpg">
 								<source src="./for_copy/illus2.webm" type="video/webm">
@@ -124,9 +104,7 @@
 							<source src="./for_copy/illus3_thumb.webm" type="video/webm">
 							Your browser does not support the video tag.
 						</video>
-						<div class="loading_ring">
-							<div></div><div></div><div></div><div></div>
-						</div>
+						<div class="loading_ring"> <div></div><div></div><div></div><div></div> </div>
 						<div class="fullsize">
 							<video loop controls preload="none" poster="./for_copy/illus3.jpg">
 								<source src="./for_copy/illus3.webm" type="video/webm">
@@ -154,9 +132,7 @@
 							<source src="./for_copy/illus4.webm" type="video/webm">
 							Your browser does not support the video tag.
 						</video>
-						<div class="loading_ring">
-							<div></div><div></div><div></div><div></div>
-						</div>
+						<div class="loading_ring"> <div></div><div></div><div></div><div></div> </div>
 						<div class="fullsize">
 							<video loop controls>
 								<source src="./for_copy/illus4.webm" type="video/webm">
@@ -180,9 +156,7 @@
 							<source src="./for_copy/illus5_thumb.webm" type="video/webm">
 							Your browser does not support the video tag.
 						</video>
-						<div class="loading_ring">
-							<div></div><div></div><div></div><div></div>
-						</div>
+						<div class="loading_ring"> <div></div><div></div><div></div><div></div> </div>
 						<div class="fullsize">
 							<video loop controls preload="none" poster="./for_copy/illus5.jpg">
 								<source src="./for_copy/illus5.webm" type="video/webm">
