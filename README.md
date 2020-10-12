@@ -18,6 +18,7 @@ This is both purposeful nostalgia and genuine personal preference.
 - CSS functions (var(), calc(), rgba(), linear-gradient()...)
 - Fonts.
 - Full responsiveness using media queries.
+- Webm.
 - SCSS.
 - HTML5 with semantic elements.
 
@@ -41,8 +42,8 @@ A few additional principles I applied:
 
 ### Loading times
 - Optimizing loading times is crucial for user experience (and bounce rate).
-- Global image assets are compressed and take no more than 500KB.
-- Gifs have been transcoded to webm. Animated thumbnails total no larger than 175KB. Fullsize animations loaded on demand total 360KB. 
+- The total transfer size to load the home page is only **320KB** -- including images, fonts, stylesheets, thumbnails, everything except the animations' fullsize.
+- Gifs have been transcoded to webm. Animated thumbnails total no larger than 175KB. Fullsize animations (loaded on demand only) total 360KB. 
 
 ### CSS full-size image viewer
 - Figure thumbnails can be enlarged with a click. The full version will appear in the center of the screen above a black overlay. This can be closed by clicking anywhere.
