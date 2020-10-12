@@ -4,7 +4,7 @@
 
 Old school fansite for the manga **Yokohama Kaidashi Kikou**. 
 
-## Borrows elements from late-00s websites:
+#### Borrows elements from late-00s websites:
 
 - Compact design using small fonts and minimal empty space between elements.
 - Narrow max width (relative to modern resolutions).
@@ -12,7 +12,7 @@ Old school fansite for the manga **Yokohama Kaidashi Kikou**.
 
 This is both purposeful nostalgia and genuine personal preference. 
 
-## Modern webdesign is still used, e.g.:
+#### Modern webdesign is still used, e.g.:
 
 - CSS3 properties such as box-shadow, border-radius, transition, and even flexbox.
 - CSS functions (var(), calc(), rgba(), linear-gradient()...)
