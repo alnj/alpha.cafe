@@ -6,9 +6,9 @@ Old school fansite for the manga **Yokohama Kaidashi Kikou**.
 
 #### Borrows elements from late-00s websites:
 
-- Compact design using small fonts and minimal empty space between elements.
-- Narrow max width (relative to modern resolutions).
-- Emphasis on copy over slogans, titles, and images.
+- Compact design using small text and minimal empty space between elements.
+- Narrow max width.
+- Emphasis on text over slogans, titles, and images.
 
 This is both purposeful nostalgia and genuine personal preference. 
 
@@ -25,16 +25,17 @@ This is both purposeful nostalgia and genuine personal preference.
 Principles kept in mind:
 
 ### Loading times
-- Fast loading time is crucial for user experience. Images and videos are compressed as much as possible.
-- Home page size is only **320KB** as measured by Lighthouse -- includes images, fonts, stylesheets, thumbnails, etc. 
+- Fast loading time is crucial for user experience. Assets are compressed as much as possible.
+- Home page is only **320KB** as measured by Lighthouse -- includes images, fonts, stylesheets, thumbnails, etc. 
 - Fullsize animations (loaded individually and on demand only) total 360KB. 
+- Stylesheet purposely written to have minimal/no layout shifts during loading.
 
 ### Clean code
 - Simple HTML with emphasis on separation of concerns.
 - Meaningless non-semantic markup such as "wrapper" elements must be employed as a last resort.
 - Amply commented stylesheet easily maintainable by third parties.
-- Elements higher on the page are located higher in the stylesheet. Properties are sorted alphabetically. 
-- Minimize repetition and maximize themability using Sass and CSS variables.
+- Elements higher on the page are higher in the stylesheet. Properties are sorted alphabetically. 
+- Minimize repetition and maximize themability using variables.
 
 ### Appealing prose
 - Simple vocabulary and concise phrasing.
@@ -43,8 +44,8 @@ Principles kept in mind:
 - Emphasize key words and phrases(?)
 
 ### CSS full-size image viewer
-- Figure thumbnails can be enlarged with a click. The full version will appear in the center of the screen above a black overlay. This can be closed by clicking anywhere.
-  - This is achieved without JS by wrapping the image in a checkbox label. While initial testing showed no glaring accessibility issue, further tests are desirable.
+- Thumbnails can be enlarged with a click. The full version appears centered above an overlay and can be closed by clicking anywhere.
+  - Achieved without JS by wrapping the thumbnail in a checkbox label. While initial testing showed no glaring accessibility issue, further tests are desirable.
 - Before thumbnails are loaded, a nice CSS-only loading animation shows in their stead.
 
 TBC
