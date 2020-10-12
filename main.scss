@@ -2,13 +2,6 @@
 @use 'css/reset'; // undo browser defaults
 @use "sass:math"; // currently relying on abs
 
-// content font
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-// nav font
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
-// headings font
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
-
 // Sass variables used where needed for use inside
 // media query declarations
 $main_offset: -80px;
@@ -40,14 +33,15 @@ $site_width: 650px;
 // html with site background
 html {
 	background: var(--page_bg);
-	background-image: url(./img/page_texture.png);
+	background-image: url(./img/page_texture.jpg);
+	background-position: center top;
 	height: auto;
 	min-height:100%;
 }
 
 // body with header image as bg
 body {
-	background: url(./img/header_bg.png) no-repeat calc(50% + var(--main_offset) + 135px) top;
+	background: url(./img/header_bg.png) no-repeat calc(50% + var(--main_offset) + 148px) top;
 	font-family: var(--main_font);
 	height: auto;
 	min-height:100%;
@@ -153,11 +147,11 @@ main {
 h1 {
 	color: var(--main_title_color);
 	font-family: var(--main_title_font);
-	font-size: 30px;
-	height: 52px; // reduce layout jumping
-	line-height: 26px;
+	font-size: 28px;
+	// min-height: 52px; // reduce layout jumping
+	line-height: 50px; // same
 	margin-bottom: 28px; // alignment for notebook lines
-	padding: 15px 10px 0 10px;
+	padding: 15px 10px 0 60px;
 	position: relative;
 	text-align: center;
 	text-shadow: // text tower shadow effect
@@ -174,9 +168,11 @@ h1 {
 		display: inline-block;
 		filter: drop-shadow(3px 3px 0px #222);
 		-webkit-filter: drop-shadow(3px 3px 0 px #222);
-		margin-right: 16px;
-		position: relative;
-		top: 6px;
+		position: absolute;
+		margin-left: -65px;
+		margin-top: 5px;
+		height: 50px;
+		width: 50px ;
 	}
 
 	// background under page title
@@ -368,8 +364,7 @@ figure { // basic layout
 	}
 
 	// hacky manual adjustment
-	main > section:nth-of-type(2) > &:last-of-type,
-	main > section:nth-of-type(3) > &:last-of-type {
+	&.pull_me_up {
 		margin-top: -15px;
 	}
 
