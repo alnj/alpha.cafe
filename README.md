@@ -28,7 +28,7 @@ Principles kept in mind:
 - Fast loading time is crucial for user experience. Assets are compressed as much as possible.
 - Home page is only **320KB** as measured by Lighthouse -- includes images, fonts, stylesheets, thumbnails, etc. 
 - Fullsize animations (loaded individually and on demand only) total 360KB. 
-- Stylesheet purposely written to have minimal/no layout shifts during loading.
+- Stylesheet written to have minimal/no layout shift during load time.
 
 ### Clean code
 - Simple HTML with emphasis on separation of concerns.
