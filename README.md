@@ -22,28 +22,25 @@ This is both purposeful nostalgia and genuine personal preference.
 - SCSS.
 - HTML5 with semantic elements.
 
-A few additional principles I applied:
+Principles kept in mind:
+
+### Loading times
+- Fast loading time is crucial for user experience. Images and videos are compressed as much as possible.
+- Home page size is only **320KB** as measured by Lighthouse -- includes images, fonts, stylesheets, thumbnails, etc. 
+- Fullsize animations (loaded individually and on demand only) total 360KB. 
 
 ### Clean code
 - Simple HTML with emphasis on separation of concerns.
-- Meaningless non-semantic markup (e.g. "wrapper" elements) must be employed as a last resort. 
-- HTML must, ideally, be fully understandable without comments.
-- Amply commented SCSS with the aim to be understood by third parties.
-- Elements higher on the page are located higher in the code.
-- Properties are sorted alphabetically. 
-- Repetition must be minimized. (DRY)
-- Themability must be maximized.
+- Meaningless non-semantic markup such as "wrapper" elements must be employed as a last resort.
+- Amply commented stylesheet easily maintainable by third parties.
+- Elements higher on the page are located higher in the stylesheet. Properties are sorted alphabetically. 
+- Minimize repetition and maximize themability using Sass and CSS variables.
 
-### Appealing copy
+### Appealing prose
 - Simple vocabulary and concise phrasing.
-- "Interesting information÷text length" ratio is more important than comprehensiveness. 
+- Staying interesting is more important than being comprehensive. 
 - Thematic sections must follow crisp headings so users can easily find information relevant to them. 
 - Emphasize key words and phrases(?)
-
-### Loading times
-- Optimizing loading times is crucial for user experience (and bounce rate).
-- The total transfer size to load the home page is only **320KB** -- including images, fonts, stylesheets, thumbnails, everything except the animations' fullsize.
-- Gifs have been transcoded to webm. Animated thumbnails total no larger than 175KB. Fullsize animations (loaded on demand only) total 360KB. 
 
 ### CSS full-size image viewer
 - Figure thumbnails can be enlarged with a click. The full version will appear in the center of the screen above a black overlay. This can be closed by clicking anywhere.
