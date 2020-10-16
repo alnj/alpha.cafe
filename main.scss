@@ -10,7 +10,7 @@ $site_width: 650px;
 
 // css variables
 :root {
-	--header_height: 120px;
+	--header_height: 151px;
 	--main_bg: #FFF;
 	--main_font: 'Rubik', sans-serif;
 	--main_offset: #{$main_offset};
@@ -44,7 +44,7 @@ body {
 	background: url(./img/header_bg.png) no-repeat calc(50% + var(--main_offset) + 148px) top;
 	font-family: var(--main_font);
 	height: auto;
-	min-height:100%;
+	min-height: 100%;
 	overflow: hidden;
 
 	// on small screen, re-center header image
@@ -69,23 +69,143 @@ a {
 
 // sitewide header
 body > header {
+	max-width: calc(var(--site_width) + var(--ribbon_extra_width));
 	// create header area which is currently empty space
 	padding-top: var(--header_height);
+	width: 100%;
+	left: var(--main_offset);
+	position: relative;
+	margin: auto;
 }
+
+// music player
+#music_player {
+	cursor: pointer;
+	background: // pen highlighter effect, alongside text-shadow
+		linear-gradient(
+			104deg,
+			rgba(255, 223, 137,0) 0.9%,
+			rgba(255, 223, 137,1.25) 2.4%,
+			rgba(255, 223, 137,0.5) 5.8%,
+			rgba(255, 223, 137,0.4) 93%,
+			rgba(255, 223, 137,0.7) 96%,
+			rgba(255, 223, 137,0) 98%
+		),
+		linear-gradient(
+			183deg,
+			rgba(255, 223, 137,0) 15%,
+			rgba(255, 223, 137,0.3) 7.9%,
+			rgba(255, 223, 137,0) 15%
+		),
+		#fff;
+	border-radius: 7.5px; // highlighter
+	position: absolute;
+	padding: 3px 0;
+	margin-left: 37px;
+	top: 122px;
+	z-index: 9;
+	filter: saturate(.8);
+	height: 22px;
+	padding-top: 2px;
+
+	@media (max-width: #{$site_width}) {
+		margin-left: 10px;
+	}
+
+	.song_title {
+		color: #54391C;
+		display: inline-block;
+		padding: 0 11px;
+		font-size: 16px;
+		font-family: var(--main_title_font);
+		margin-top: 0px;
+		&::after {
+			content: "\A\A";
+			white-space: pre;
+		}
+	}
+
+	// music play/pause logo and animation
+	#header_play_button {
+		$size : 12px;
+
+		display: inline-block;
+		width: $size;
+		height: $size;
+		position: relative;
+		margin: auto;
+		margin-right: 8px;
+
+		&:before, &:after {
+			content: "";
+			position: absolute;
+			width: 0;
+			border-style: solid;
+			border-color: transparent;
+			border-left-color: #DE3533;
+			transition:.1s;
+		}
+		&:before {
+			left: 0;
+			top: 0;
+			height: $size / 1;
+			border-width: $size / 4 $size / 2 $size / 4 $size / 2;
+		}
+		&:after {
+			left: $size / 2;
+			top: $size / 4;
+			height: 0;
+			border-width: $size / 4 0 $size / 4 $size / 2;
+		}
+		&.paused {
+			&:before {
+				height: $size;
+				border-width: 0 0 0 $size / 3;
+			}
+			&:after {
+				left: $size / 1.7;
+				top: 0;
+				height: $size;
+				border-width: 0 0 0 $size / 3;
+			}
+		}
+	}
+}
+
+
+#music_player,
+main * {
+	animation: fade-me-in .5s;
+	@keyframes fade-me-in {
+		0% {opacity:0;}
+		0% {opacity:0;}
+		100% {opacity:1;}
+	}
+}
+
+h1::after { // TODO: move these animations where they need to be
+	animation: fade-me-in2 .5s;
+	@keyframes fade-me-in2 {
+		0% {opacity:0;}
+		0% {opacity:0;}
+		100% {opacity:.7;}
+	}
+}
+
+
 
 // navlink header ribbon
 nav {
 	background-color: var(--nav_bg);
 	background-image: url(./img/nav_texture.png);
-	box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.75),
-	            0px -3px 5px -2px rgba(0,0,0,0.6);
+	box-shadow:
+		0px 3px 5px -2px rgba(0,0,0,0.75),
+		0px -3px 5px -2px rgba(0,0,0,0.6);
 	// TODO: fixed burger for mobile?
 	display: flex; // neatly align navlinks
 	flex-wrap: wrap;
 	justify-content: space-around;
-	left: var(--main_offset);
 	line-height: 30px;
-	margin: auto;
 	max-width: calc(var(--site_width) + var(--ribbon_extra_width));
 	position: relative;
 	transform-style: preserve-3d; // needed over bare z-index here
@@ -128,8 +248,9 @@ main {
 	background-color: var(--main_bg);
 	background-image: url("./img/notebook.png");
 	// gradient/shadow outline on each side
-	box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3),
-	           -3px 3px 5px 0px rgba(0,0,0,0.3);
+	box-shadow:
+		3px 3px 5px 0px rgba(0,0,0,0.3),
+		-3px 3px 5px 0px rgba(0,0,0,0.3);
 	height: auto;
 	left: var(--main_offset);
 	margin: auto;
@@ -143,18 +264,21 @@ main {
 	z-index: unset; // enforce for image no-js fullview darkening
 }
 
+
+
 // page title
 h1 {
 	color: var(--main_title_color);
 	font-family: var(--main_title_font);
 	font-size: 28px;
-	// min-height: 52px; // reduce layout jumping
+	min-height: 52px; // reduce layout jumping
 	line-height: 50px; // same
 	margin-bottom: 28px; // alignment for notebook lines
 	padding: 15px 10px 0 60px;
 	position: relative;
 	text-align: center;
-	text-shadow: // text tower shadow effect
+	// text tower shadow effect
+	text-shadow:
 		1px 1px var(--title_shadow),
 		2px 2px var(--title_shadow),
 		3px 3px var(--title_shadow),
@@ -167,7 +291,7 @@ h1 {
 		content: url(./img/h1_logo.png);
 		display: inline-block;
 		filter: drop-shadow(3px 3px 0px #222);
-		-webkit-filter: drop-shadow(3px 3px 0 px #222);
+		-webkit-filter: drop-shadow(3px 3px 0px #222);
 		position: absolute;
 		margin-left: -65px;
 		margin-top: 5px;
@@ -178,15 +302,14 @@ h1 {
 	// background under page title
 	&::after {
 		background: url(./img/h1_bg.png) center 0px no-repeat;
-		// border-top: 1px dashed #C0A79D; // see above, not keeping atm
 		content: "";
 		display: block;
 		height: 44px;
 		left: 0px;
 		max-width: var(--site_width);
-		opacity: .7; // TODO: just change opacity on the image itself
+		opacity: .7;
 		position: absolute;
-		top: 0; // TODO: just remove the 2 lines from the image
+		top: 0;
 		width: 100%;
 		z-index: -1;
 	}
@@ -194,8 +317,7 @@ h1 {
 
 // minor section stuff
 main section { // re-use the notebook lines to add empty space between sections
-	background:
-		url(./img/notebook.png) 0 14px repeat;
+	background: url(./img/notebook.png) 0 14px repeat;
 	overflow: visible; // Forgot what this is useful for. Possibly unneeded
 	padding: 0 25px;
 }
@@ -247,7 +369,7 @@ a.heading { // links that wrap h2s
 		z-index: 3; // ensure logo is over <p> bg
 
 		// set different logo for each successive heading
-		@for $i from 1 through 4 { // TODO: create more than 3 logos
+		@for $i from 1 through 4 {
 			section:nth-of-type(#{$i}) & {
 				content: url(./img/small_logo#{$i}.png);
 			}
@@ -338,8 +460,8 @@ figure { // basic layout
 	overflow: hidden;
 
 	// thumbnail basic layout
-	label > img,
-	label > video {
+	.thumbnail img,
+	.thumbnail video {
 		border-radius: 5px;
 		color: #555; // for alt text
 		cursor: pointer;
@@ -357,16 +479,16 @@ figure { // basic layout
 		}
 	}
 
-	// every section, every other figure is right aligned
-	&:nth-of-type(even) {
+	// every section, every other figure is right aligned by default,
+	// can be overridden with classes "left" and "right"
+	&:nth-of-type(even):not(.left),
+	&.right {
 		float: right;
 		margin: 5px 0 5px 15px;
 	}
 
 	// hacky manual adjustment
-	&.pull_me_up {
-		margin-top: -15px;
-	}
+	&.pull_me_up { margin-top: -15px !important; }
 
 	// loading animation before thumbs are visible
 	.loading_ring {
@@ -399,79 +521,62 @@ figure { // basic layout
 	}
 }
 
-// figure image fullsize viewer
-.click_for_fullsize {
-	display: none; // hide normal checkbox
+// Fullsize view toggled on click by JS
+.fullsize {
+	height: auto;
+	// move image out of viewport
+	// instead of display:none
+	// to work with loading="lazy"
+	left: -9999px;
+	// Image will still be downscaled to fit viewport
+	max-height: 100vh;
+	max-width: 100vh;
+	object-fit: contain;
+	opacity: 0; // for transition
+	position: fixed;
+	top: 50%;
+	// lets us center image of unknown dimensions
+	transform: translateY(-50%) translateX(-50%);
+	transition: 0;
+	visibility: hidden;
+	width: auto;
+	z-index: 99;
+
+	img, video {
+		width: unset;
+		height: unset;
+		box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
+	}
 
 	// dark overlay
-	& + label::before {
-		background-color: rgba(0,0,0,0.6);
+	&::before {
+		// positioning is hacky here
+		background-color: rgba(0,0,0,0.2);
 		content: "";
-		height: 100%;
-		left:0;
+		height: 500vh ;
+		left: -200vh;
 		opacity: 0;
 		position: fixed;
-		top:0;
+		top: -200vh;
 		visibility: hidden;
-		width: 100%;
-		z-index: 99;
+		width: 500vh;
+		z-index: -1;
+	}
+
+	// class toggled on click
+	&.visible {
+		left: 50%;
+		opacity: 1;
+		transition: opacity .3s;
+		visibility: visible;
 	}
 	// show overlay when image clicked
-	&:checked + label::before {
+	&.visible::before {
 		// by setting transition inside the :checked pseudo-element,
 		// there will be no transition when closing the image,
 		// only opening.
 		transition: opacity .3s;
 		opacity: 1;
-		visibility: visible;
-	}
-
-	// "X" logo at the top right of the fullsize image
-	&:checked + label div.fullsize::before {
-		background-color: rgba(0,0,0,0.6);
-		border-radius: 0 0 0 4px;
-		color: #fff ;
-		content: "x";
-		font-family: var(--main_font);
-		font-size: 20px;
-		padding: 4px;
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 99;
-	}
-
-	// fullsize image
-	& + label div.fullsize {
-		height: auto;
-		// move image out of viewport
-		// instead of display:none
-		// to work with loading="lazy"
-		left: -9999px;
-		// Image will still be downscaled to fit viewport
-		max-height: 100vh;
-		max-width: 100vh;
-		object-fit: contain;
-		opacity: 0; // for transition
-		position: fixed;
-		top: 50%;
-		// lets us center image of unknown dimensions
-		transform: translateY(-50%) translateX(-50%);
-		transition: 0;
-		visibility: hidden;
-		width: auto;
-		z-index: 99;
-		& img {
-			width: unset;
-			height: unset;
-			box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
-		}
-	}
-	// show fullsize image when clicked
-	&:checked + label div.fullsize {
-		left: 50%;
-		opacity: 1;
-		transition: opacity .3s;
 		visibility: visible;
 	}
 }
@@ -495,7 +600,7 @@ main p { // mostly alignment for notebook lines
 		white-space: pre;
 	}
 
- }
+}
 
 // strong
  strong {
@@ -545,10 +650,7 @@ blockquote {
 	p {
 		background-color: unset;
 		display: inline;
-		
-		&::after {
-			content: unset;
-		}
+		&::after { content: unset; }
 	}
 }
 
