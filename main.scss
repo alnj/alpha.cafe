@@ -37,6 +37,11 @@ html {
 	background-position: center top;
 	height: auto;
 	min-height:100%;
+	scroll-behavior: smooth;
+	
+	& > div {
+		display: none !important;
+	}
 }
 
 // body with header image as bg
@@ -258,7 +263,7 @@ main {
 	max-width: var(--site_width);
 	// when main smaller than vh, ensure main still takes whole page
 	min-height: calc(100vh - 184px);
-	padding-bottom: 85px; // ensure no text is over footer kokone
+	padding-bottom: 115px; // ensure no text is over footer kokone
 	position: relative;
 	width: 100%;
 	z-index: unset; // enforce for image no-js fullview darkening
@@ -490,6 +495,19 @@ figure { // basic layout
 	// hacky manual adjustment
 	&.pull_me_up { margin-top: -15px !important; }
 
+	&.large {
+		width: 162px ;
+		height: 232px;
+		.thumbnail img, .thumbnail video {
+			width: 160px;
+			height: unset;
+		}
+
+	&.large.pull_me_up { margin-top: -25px !important; }
+
+	}
+
+
 	// loading animation before thumbs are visible
 	.loading_ring {
 		display: inline-block;
@@ -519,6 +537,19 @@ figure { // basic layout
 			100% { transform: rotate(360deg); }
 		}
 	}
+
+	// style for figcaptions placed below media in the markup
+	img + figcaption,
+	video + figcaption {
+		font-size: 10px;
+		color: #000000;
+		text-align: right;
+		z-index: 2;
+		position: relative;
+		margin-top: -16px;
+		padding-right: 5px;
+		background-color: rgba(255, 255, 255,0.6);
+	}
 }
 
 // Fullsize view toggled on click by JS
@@ -529,9 +560,9 @@ figure { // basic layout
 	// to work with loading="lazy"
 	left: -9999px;
 	// Image will still be downscaled to fit viewport
-	max-height: 100vh;
-	max-width: 100vh;
-	object-fit: contain;
+	max-height: calc(95vh - 20px);
+	max-width: calc(95vh - 20px);
+	object-fit: scale-down;
 	opacity: 0; // for transition
 	position: fixed;
 	top: 50%;
@@ -543,9 +574,12 @@ figure { // basic layout
 	z-index: 99;
 
 	img, video {
-		width: unset;
-		height: unset;
 		box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
+		height: unset;
+		max-height: calc(95vh - 20px);
+		max-width: calc(95vh - 20px);
+		object-fit: scale-down;
+		width: unset;
 	}
 
 	// dark overlay
@@ -599,7 +633,14 @@ main p { // mostly alignment for notebook lines
 		content: "\A\A"; // two newlines despite inline element
 		white-space: pre;
 	}
+}
 
+// links
+main p a {
+	color: #263A40;
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: #A6C0C6;
 }
 
 // strong
@@ -630,21 +671,26 @@ main p { // mostly alignment for notebook lines
 
 // blockquote
 blockquote {
-	background: #f9f9f9;
-	border-left: 5px solid #ccc;
-	margin: 0px 10px 25px 10px;
-	padding: 13px 20px 13px 0px;
+	border-radius: 5px;
+	background: #F3F3F3;
+	border-left: 5px solid #E1E1E1;
+	font-size: 14px;
+	margin: -2px 10px 24px 0px;
+	overflow: hidden; // prevent from going under floats. consider using
+	                  // display: flow-root instead
+	padding: 2px 10px 2px 20px;
 	quotes: "\201C""\201D""\2018""\2019";
+	& > p {
+		font-style: italic;
+	}
 
 	&::before {
-		color: #ccc;
+		color: #D9D9D9;
 		content: open-quote;
 		font-size: 4em;
-		left: 10px;
-		line-height: 0.1em;
-		margin-left: 8px;
-		margin-right: 0.1em;
-		vertical-align: -0.4em;
+		line-height: 0;
+		margin-right: 5px;
+		vertical-align: -27px;
 	}
 
 	p {
@@ -652,6 +698,12 @@ blockquote {
 		display: inline;
 		&::after { content: unset; }
 	}
+
+	footer {
+		text-align: right;
+	}
+
+
 }
 
 // bottom of page background / kokone
@@ -661,13 +713,17 @@ body > footer {
 	margin: auto;
 	margin-top: -154px;
 	max-width: 669px;
-	left: var(--main_offset);
+	left: calc( 50% + var(--main_offset) - 330px  );
 	overflow: hidden; // for mobile
-	padding-top: 40px; // padding for the text
-	position: relative;
+	padding-top: 30px; // padding for the text
+	position: absolute;
 	text-align: center;
 	width: 100%;
 	z-index: 2;
+
+	@media (max-width: #{$site_width}) {
+		left: calc( 50% + var(--main_offset) - 0);
+	}
 
 	// TODO: make image go under text when small screen
 	&::before { // kokone character image
@@ -701,10 +757,10 @@ body > footer {
 		// highlights text and not block
 		display: inline;
 		font-size: 13px;
-		left: 10%;
+		left: 37%;
 		margin: auto;
 		position: relative;
-		top: -160px;
+		top: -103px;
 		text-shadow:
 			-3px 4px 5px rgba(255, 223, 137, 0.7),
 			3px -4px 7.3px white,
