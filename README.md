@@ -1,4 +1,4 @@
-# alpha.cafe
+# https://alpha.cafe
 
 ![Latest screenshot.](./img/screenshot.png)
 
