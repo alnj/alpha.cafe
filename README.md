@@ -29,6 +29,7 @@ Principles kept in mind:
 - Home page is only **320KB** as measured by Lighthouse -- includes images, fonts, stylesheets, thumbnails, etc. 
 - Fullsize animations (loaded individually and on demand only) total 360KB. 
 - Stylesheet written to have minimal/no layout shift during load time.
+- No Flash of Unstyled Text. Flash of Invisible Text softened by using a fade-in animation.
 
 ### Clean code
 - Simple HTML with emphasis on separation of concerns.
@@ -45,7 +46,8 @@ Principles kept in mind:
 
 ### CSS full-size image viewer
 - Thumbnails can be enlarged with a click. The full version appears centered above an overlay and can be closed by clicking anywhere.
-  - Achieved without JS by wrapping the thumbnail in a checkbox label. While initial testing showed no glaring accessibility issue, further tests are desirable.
+  - Achieved ~~without JS by wrapping the thumbnail in a checkbox label~~ with JS because I decided to stop being cute and just do it the normal, boring way.
 - Before thumbnails are loaded, a nice CSS-only loading animation shows in their stead.
 
-TBC
+# TODO
+More content is to come. My wish is to, once I have the knowledge, turn the website into a Single Page Application. In particular, this would greatly increase UX by not interrupting the background music on page change.
