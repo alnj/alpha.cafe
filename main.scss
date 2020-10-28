@@ -210,18 +210,24 @@ nav {
 	display: flex; // neatly align navlinks
 	flex-wrap: wrap;
 	justify-content: space-around;
-	line-height: 30px;
+	line-height: 24px;
 	max-width: calc(var(--site_width) + var(--ribbon_extra_width));
+	padding: 3px 0;
 	position: relative;
 	transform-style: preserve-3d; // needed over bare z-index here
 	width: 100%;
 	z-index: 2; // this lets its shadow be over the <main>
 
 	a { // TODO: hover effects
+		border-radius: 5px;
 		color: var(--main_bg);
 		font-family: 'Dosis', sans-serif;
 		padding: 0 5px;
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+		transition: .5s;
+		&:hover {
+			background-color: rgba($color: #000, $alpha: 0.08);
+		}
 	}
 
 	// ribbon tips
@@ -317,6 +323,12 @@ h1 {
 		top: 0;
 		width: 100%;
 		z-index: -1;
+	}
+
+	// If there is only one section and hence no h2
+	& + section:last-child {
+		background: none !important;
+		margin-top: -6px !important;
 	}
 }
 
@@ -541,14 +553,14 @@ figure { // basic layout
 	// style for figcaptions placed below media in the markup
 	img + figcaption,
 	video + figcaption {
-		font-size: 10px;
+		font-size: 11px;
 		color: #000000;
 		text-align: right;
 		z-index: 2;
 		position: relative;
-		margin-top: -16px;
+		margin-top: -17px;
 		padding-right: 5px;
-		background-color: rgba(255, 255, 255,0.6);
+		background-color: rgba(255, 255, 255,0.8);
 	}
 }
 
@@ -616,7 +628,7 @@ figure { // basic layout
 }
 
 // paragraphs
-main p { // mostly alignment for notebook lines
+main p, h3 { // mostly alignment for notebook lines
 	background-color: #fff; // hide notebook lines
 	display: inline; // don't hide past text
 	font-size: 14px;
@@ -635,8 +647,54 @@ main p { // mostly alignment for notebook lines
 	}
 }
 
+// h3
+h3 {
+	font-weight: bold;
+	&::after {
+		content: "\A";
+		white-space: pre;
+	}
+}
+
+ul { // TODO: clean this up
+	font-size: 14px;
+	line-height: 26px;
+	// with top/bot padding, even if alignment goes haywire all notebook
+	// lines under text will be hidden e.g. mobile firefox ATM
+	position: relative;
+	// I believe this is for the case I change text to be able to go
+	// over the footer image.
+	z-index: 2;
+	margin-left: 2em;
+
+	p + & {
+		margin-top: -26px;
+	}
+	& + h3::before {
+		content: "\A";
+		white-space: pre;
+	}
+	& + p::before {
+		content: "\A";
+		white-space: pre;
+	}
+
+	section > &:last-child::after {
+		content: "\A";
+		white-space: pre;
+	}
+}
+li {
+	text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
+	             0px 0px 3px rgba(255, 255, 255, 1),
+	             0px 0px 3px rgba(255, 255, 255, 1),
+	             0px 0px 3px rgba(255, 255, 255, 1),
+		     0px 0px 3px rgba(255, 255, 255, 1);
+	list-style-type: square;
+}
+
 // links
-main p a {
+main p a, main li a {
 	color: #263A40;
 	cursor: pointer;
 	text-decoration: underline;
@@ -760,7 +818,7 @@ body > footer {
 		left: 37%;
 		margin: auto;
 		position: relative;
-		top: -103px;
+		top: -123px;
 		text-shadow:
 			-3px 4px 5px rgba(255, 223, 137, 0.7),
 			3px -4px 7.3px white,
