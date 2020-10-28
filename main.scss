@@ -74,13 +74,13 @@ a {
 
 // sitewide header
 body > header {
+	left: var(--main_offset);
+	margin: auto;
 	max-width: calc(var(--site_width) + var(--ribbon_extra_width));
 	// create header area which is currently empty space
 	padding-top: var(--header_height);
-	width: 100%;
-	left: var(--main_offset);
 	position: relative;
-	margin: auto;
+	width: 100%;
 }
 
 // music player
@@ -104,15 +104,15 @@ body > header {
 		),
 		#fff;
 	border-radius: 7.5px; // highlighter
-	position: absolute;
-	padding: 3px 0;
-	margin-left: 37px;
-	top: 122px;
-	z-index: 9;
 	filter: saturate(.8);
 	height: 22px;
-	padding-top: 2px;
+	margin-left: 37px;
+	padding: 2px 0 3px ;
+	position: absolute;
+	top: 122px;
+	z-index: 9;
 
+	// Reposition on small screens
 	@media (max-width: #{$site_width}) {
 		margin-left: 10px;
 	}
@@ -120,10 +120,11 @@ body > header {
 	.song_title {
 		color: #54391C;
 		display: inline-block;
-		padding: 0 11px;
 		font-size: 16px;
 		font-family: var(--main_title_font);
 		margin-top: 0px;
+		padding: 0 11px;
+
 		&::after {
 			content: "\A\A";
 			white-space: pre;
@@ -135,69 +136,47 @@ body > header {
 		$size : 12px;
 
 		display: inline-block;
-		width: $size;
 		height: $size;
 		position: relative;
 		margin: auto;
 		margin-right: 8px;
+		width: $size;
 
 		&:before, &:after {
 			content: "";
-			position: absolute;
-			width: 0;
 			border-style: solid;
 			border-color: transparent;
 			border-left-color: #DE3533;
+			position: absolute;
 			transition:.1s;
+			width: 0;
 		}
 		&:before {
+			border-width: $size / 4 $size / 2 $size / 4 $size / 2;
+			height: $size / 1;
 			left: 0;
 			top: 0;
-			height: $size / 1;
-			border-width: $size / 4 $size / 2 $size / 4 $size / 2;
 		}
 		&:after {
+			border-width: $size / 4 0 $size / 4 $size / 2;
+			height: 0;
 			left: $size / 2;
 			top: $size / 4;
-			height: 0;
-			border-width: $size / 4 0 $size / 4 $size / 2;
 		}
 		&.paused {
 			&:before {
-				height: $size;
 				border-width: 0 0 0 $size / 3;
+				height: $size;
 			}
 			&:after {
+				border-width: 0 0 0 $size / 3;
+				height: $size;
 				left: $size / 1.7;
 				top: 0;
-				height: $size;
-				border-width: 0 0 0 $size / 3;
 			}
 		}
 	}
 }
-
-
-#music_player,
-main * {
-	animation: fade-me-in .5s;
-	@keyframes fade-me-in {
-		0% {opacity:0;}
-		0% {opacity:0;}
-		100% {opacity:1;}
-	}
-}
-
-h1::after { // TODO: move these animations where they need to be
-	animation: fade-me-in2 .5s;
-	@keyframes fade-me-in2 {
-		0% {opacity:0;}
-		0% {opacity:0;}
-		100% {opacity:.7;}
-	}
-}
-
-
 
 // navlink header ribbon
 nav {
@@ -207,6 +186,7 @@ nav {
 		0px 3px 5px -2px rgba(0,0,0,0.75),
 		0px -3px 5px -2px rgba(0,0,0,0.6);
 	// TODO: fixed burger for mobile?
+	// will do eventually when more menu items
 	display: flex; // neatly align navlinks
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -218,13 +198,14 @@ nav {
 	width: 100%;
 	z-index: 2; // this lets its shadow be over the <main>
 
-	a { // TODO: hover effects
+	a {
 		border-radius: 5px;
 		color: var(--main_bg);
 		font-family: 'Dosis', sans-serif;
 		padding: 0 5px;
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 		transition: .5s;
+
 		&:hover {
 			background-color: rgba($color: #000, $alpha: 0.08);
 		}
@@ -232,7 +213,6 @@ nav {
 
 	// ribbon tips
 	&::before, &::after {
-		// using an image ribbon tip for texture
 		content: url(./img/ribbon_left.png);
 		filter: drop-shadow(0px -1px 3px rgba(0,0,0,0.6));
 		-webkit-filter: drop-shadow(0px -1px 3px rgba(0,0,0,0.6));
@@ -273,17 +253,25 @@ main {
 	position: relative;
 	width: 100%;
 	z-index: unset; // enforce for image no-js fullview darkening
+
+	// fade in content on page load to reduce flashing
+	main * {
+		animation: fade-me-in .5s;
+		@keyframes fade-me-in {
+			0% {opacity:0;}
+			0% {opacity:0;}
+			100% {opacity:1;}
+		}
+	}
 }
-
-
 
 // page title
 h1 {
 	color: var(--main_title_color);
 	font-family: var(--main_title_font);
 	font-size: 28px;
-	min-height: 52px; // reduce layout jumping
 	line-height: 50px; // same
+	min-height: 52px; // reduce layout jumping
 	margin-bottom: 28px; // alignment for notebook lines
 	padding: 15px 10px 0 60px;
 	position: relative;
@@ -297,17 +285,19 @@ h1 {
 	// top: 10px; // creates effect i am leaning towards not keeping
 	z-index: 2;
 
-	// small alpha logo TODO: make it less intrusive when title on two lines
+	// small alpha logo 
+	// TODO: make it less intrusive when title on two lines
 	&::before {
 		content: url(./img/h1_logo.png);
 		display: inline-block;
 		filter: drop-shadow(3px 3px 0px #222);
 		-webkit-filter: drop-shadow(3px 3px 0px #222);
-		position: absolute;
+		height: 50px;
 		margin-left: -65px;
 		margin-top: 5px;
-		height: 50px;
-		width: 50px ;
+		position: absolute;
+		width: 50px;
+		z-index: 3;
 	}
 
 	// background under page title
@@ -323,10 +313,18 @@ h1 {
 		top: 0;
 		width: 100%;
 		z-index: -1;
+
+		// Fade in on page load to reduce flashing
+		animation: fade-me-in2 .5s;
+		@keyframes fade-me-in2 {
+			0% {opacity:0;}
+			0% {opacity:0;}
+			100% {opacity:.7;}
+		}
 	}
 
 	// If there is only one section and hence no h2
-	& + section:last-child {
+	& + section:last-child { // alignment fix
 		background: none !important;
 		margin-top: -6px !important;
 	}
@@ -339,12 +337,12 @@ main section { // re-use the notebook lines to add empty space between sections
 	padding: 0 25px;
 }
 
-// arrow with "click for full size" graphic over the first figure!
+// arrow with "click for full size" graphic over the first figure
 main > section:first-of-type > figure:first-of-type::before {
 	content: url(./img/arrow.png);
-	position: absolute;
-	margin-top: 35px;
 	left: -83px;
+	margin-top: 35px;
+	position: absolute;
 	z-index: 5;
 
 	@media (max-width: 800px) {
@@ -371,10 +369,10 @@ a.heading { // links that wrap h2s
 			rgba(255, 223, 137,0) 15%
 		);
 	border-radius: 7.5px; // highlighter
+	display: inline-block;
 	margin-bottom: 9px; // notebook alignment
 	margin-left: -7px;
 	margin-top: 10px; // notebook alignment
-	display: inline-block;
 	position: relative;
 	width: calc(100% + 15px);
 	z-index: 1;
@@ -472,9 +470,9 @@ figure { // basic layout
 	float: left;
 	height: 118px;
 	margin: 5px 20px 5px 0;
+	overflow: hidden;
 	padding: 5px;
 	width: 150px;
-	overflow: hidden;
 
 	// thumbnail basic layout
 	.thumbnail img,
@@ -486,9 +484,10 @@ figure { // basic layout
 		height: 108px;
 		object-fit: cover; // crop image for predictable dimensions
 		position: relative;
-		width: 140px;
 		transition: .3s;
-		z-index: 2;
+		width: 140px;
+		z-index: 3;
+
 		// minor hover effect
 		&:hover {
 			border-radius: 0;
@@ -508,17 +507,15 @@ figure { // basic layout
 	&.pull_me_up { margin-top: -15px !important; }
 
 	&.large {
-		width: 162px ;
 		height: 232px;
+		width: 162px;
 		.thumbnail img, .thumbnail video {
-			width: 160px;
 			height: unset;
+			width: 160px;
 		}
-
-	&.large.pull_me_up { margin-top: -25px !important; }
-
 	}
 
+	&.large.pull_me_up { margin-top: -25px !important; }
 
 	// loading animation before thumbs are visible
 	.loading_ring {
@@ -553,14 +550,14 @@ figure { // basic layout
 	// style for figcaptions placed below media in the markup
 	img + figcaption,
 	video + figcaption {
-		font-size: 11px;
+		background-color: rgba(255, 255, 255,0.8);
 		color: #000000;
-		text-align: right;
-		z-index: 2;
-		position: relative;
+		font-size: 11px;
 		margin-top: -17px;
 		padding-right: 5px;
-		background-color: rgba(255, 255, 255,0.8);
+		position: relative;
+		text-align: right;
+		z-index: 2;
 	}
 }
 
@@ -618,7 +615,7 @@ figure { // basic layout
 	}
 	// show overlay when image clicked
 	&.visible::before {
-		// by setting transition inside the :checked pseudo-element,
+		// by setting transition inside the 'visible' class,
 		// there will be no transition when closing the image,
 		// only opening.
 		transition: opacity .3s;
@@ -647,50 +644,32 @@ main p, h3 { // mostly alignment for notebook lines
 	}
 }
 
-// h3
-h3 {
-	font-weight: bold;
-	&::after {
-		content: "\A";
-		white-space: pre;
-	}
-}
-
 ul { // TODO: clean this up
 	font-size: 14px;
 	line-height: 26px;
-	// with top/bot padding, even if alignment goes haywire all notebook
-	// lines under text will be hidden e.g. mobile firefox ATM
-	position: relative;
-	// I believe this is for the case I change text to be able to go
-	// over the footer image.
-	z-index: 2;
 	margin-left: 2em;
+	position: relative;
+	z-index: 2;
 
+	// TODO: find more elegant solution than injecting line feeds...
 	p + & {
 		margin-top: -26px;
 	}
-	& + h3::before {
-		content: "\A";
-		white-space: pre;
-	}
-	& + p::before {
-		content: "\A";
-		white-space: pre;
-	}
-
+	& + h3::before,
+	& + p::before,
 	section > &:last-child::after {
 		content: "\A";
 		white-space: pre;
 	}
 }
-li {
+
+li { // using shadows as a fallback solution for hiding the notebook lines
+	list-style-type: square;
 	text-shadow: 0px 0px 3px rgba(255, 255, 255, 1),
 	             0px 0px 3px rgba(255, 255, 255, 1),
 	             0px 0px 3px rgba(255, 255, 255, 1),
 	             0px 0px 3px rgba(255, 255, 255, 1),
 		     0px 0px 3px rgba(255, 255, 255, 1);
-	list-style-type: square;
 }
 
 // links
@@ -699,48 +678,24 @@ main p a, main li a {
 	cursor: pointer;
 	text-decoration: underline;
 	text-decoration-color: #A6C0C6;
-}
+	transition: .3s;
 
-// strong
- strong {
-	--strong_background: #E9C6C4;
-	// background:
-		// linear-gradient(
-			// 104deg,
-			// var(--strong_background) 0.9%,
-			// var(--strong_background) 2.4%,
-			// var(--strong_background) 5.8%,
-			// var(--strong_background) 93%,
-			// var(--strong_background) 96%,
-			// var(--strong_background) 98%
-		// ),
-		// linear-gradient(
-			// 183deg,
-			// var(--strong_background) 0%,
-			// var(--strong_background) 7.9%,
-			// var(--strong_background) 15%
-		// );
-	// font-weight: normal;
-	// text-shadow:
-		// -3px 4px 5px rgba(232, 197, 197, 0.7),
-		// 3px -4px 7.3px white,
-		// -3px -4px 6px white;
+	&:hover {
+		color: #191F21;
+	}
 }
 
 // blockquote
 blockquote {
-	border-radius: 5px;
 	background: #F3F3F3;
 	border-left: 5px solid #E1E1E1;
+	border-radius: 5px;
 	font-size: 14px;
 	margin: -2px 10px 24px 0px;
 	overflow: hidden; // prevent from going under floats. consider using
 	                  // display: flow-root instead
 	padding: 2px 10px 2px 20px;
 	quotes: "\201C""\201D""\2018""\2019";
-	& > p {
-		font-style: italic;
-	}
 
 	&::before {
 		color: #D9D9D9;
@@ -754,24 +709,23 @@ blockquote {
 	p {
 		background-color: unset;
 		display: inline;
+		font-style: italic;
 		&::after { content: unset; }
 	}
 
 	footer {
 		text-align: right;
 	}
-
-
 }
 
 // bottom of page background / kokone
 body > footer {
 	background: url(./img/footer_bg.png) no-repeat bottom; // landscape img
 	height: 154px;
+	left: calc( 50% + var(--main_offset) - 330px  );
 	margin: auto;
 	margin-top: -154px;
 	max-width: 669px;
-	left: calc( 50% + var(--main_offset) - 330px  );
 	overflow: hidden; // for mobile
 	padding-top: 30px; // padding for the text
 	position: absolute;
@@ -779,11 +733,11 @@ body > footer {
 	width: 100%;
 	z-index: 2;
 
+	// change position on small screens
 	@media (max-width: #{$site_width}) {
 		left: calc( 50% + var(--main_offset) - 0);
 	}
 
-	// TODO: make image go under text when small screen
 	&::before { // kokone character image
 		bottom: 30px;
 		content: url(./img/footer_logo.png); // kokone / character
