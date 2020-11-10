@@ -50,4 +50,4 @@ Principles kept in mind:
 - Before thumbnails are loaded, a nice CSS-only loading animation shows in their stead.
 
 # TODO
-More content is to come. My wish is to, once I have the knowledge, turn the website into a Single Page Application. In particular, this would greatly improve UX by not interrupting the background music on page change.
+More content is to come. Code-wise, I might turn the website into a Single Page Application. (In particular, this would greatly improve UX by not interrupting the background music on page change.)
